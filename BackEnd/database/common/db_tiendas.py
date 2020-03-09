@@ -69,7 +69,7 @@ class Db_tiendas(Basedatos):
             }
             lista_dict_tiendas.append(dict_obj)
 
-        return (self.respuesta_minima(lista_dict_tiendas),min=min)
+        return (self.respuesta_minima(lista_dict_tiendas,min=min))
     
     def respuesta_por_defecto(self):
         """Genera un diccionario con datos por defecto para una tienda, cada vez que se ejecuta asigna al azar una
@@ -126,7 +126,7 @@ class Db_tiendas(Basedatos):
 
         self.conectar_base_datos()
         self.cursor.execute("SELECT * FROM tiendas WHERE id_tienda = ?;", [id_tienda])
-        tienda = self.cursor.fetchone(min=min)
+        tienda = self.cursor.fetchone()
         self.cerrar_conexion()
         if g:
             return tienda[0:6]#agregado 18-2-2020
